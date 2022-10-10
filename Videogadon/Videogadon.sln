@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32901.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Videogadon", "Videogadon\Videogadon.csproj", "{144AF928-C93A-41A8-8584-15213813621D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{144AF928-C93A-41A8-8584-15213813621D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{144AF928-C93A-41A8-8584-15213813621D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{144AF928-C93A-41A8-8584-15213813621D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{144AF928-C93A-41A8-8584-15213813621D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C72553EB-C9DA-4211-9FA1-22439B8CC28A}
+	EndGlobalSection
+EndGlobal
