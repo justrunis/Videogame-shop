@@ -48,7 +48,7 @@ namespace Videogadon.Controllers
 
         // api/gameCategories
         [HttpPost]
-        public async Task<ActionResult<GameCategoryDto>> Create(CreateTopicDto createGameCategoryDto)
+        public async Task<ActionResult<GameCategoryDto>> Create(CreateGameCategoryDto createGameCategoryDto)
         {
             var gameCategory = new GameCategory 
                 { Name = createGameCategoryDto.Name, Description = createGameCategoryDto.Description, CreationDate = DateTime.UtcNow };
@@ -62,7 +62,7 @@ namespace Videogadon.Controllers
         // api/gameCategories
         [HttpPut]
         [Route("{gameCategoryId}")]
-        public async Task<ActionResult<GameCategoryDto>> Update(int gameCategoryId, UpdateTopicDto updateGameCategoryDto)
+        public async Task<ActionResult<GameCategoryDto>> Update(int gameCategoryId, UpdateGameCategoryDto updateGameCategoryDto)
         {
             var gameCategory = await _gameCategoriesRepository.GetAsync(gameCategoryId);
 

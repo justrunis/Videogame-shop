@@ -7,6 +7,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddDbContext<VideogadonDbContext>();
 builder.Services.AddTransient<IGameCategoriesRepository, GameCategoriesRepository>();
+builder.Services.AddTransient<IGamesRepository, GamesRepository>();
 
 var app = builder.Build();
 

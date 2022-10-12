@@ -9,6 +9,7 @@
         public DateTime ReleaseDate { get; set; }
         public float Price { get; set; }
         public DateTime CreationDate { get; set; }
+        public int GameCategoryId { get; set; }
 
         public GameCategory GameCategory { get; set; }
 
