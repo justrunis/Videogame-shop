@@ -5,8 +5,9 @@ namespace Videogadon.Data.Reposotories
 {
     public interface ICommentsRepository
     {
-        Task<Comment?> GetAsync(int commentId);
-        Task<IReadOnlyList<Comment>> GetManyAsync();
+        Task<Comment> GetAsync(int gameCategoryId, int gameId, int commentId);
+        Task<List<Comment?>> GetAsync(int gameCategoryId, int gameId);
+        //Task<IReadOnlyList<Comment>> GetManyAsync();
         Task CreateAsync(Comment comment);
         Task UpdateAsync(Comment comment);
         Task DeleteAsync(Comment comment);
@@ -21,15 +22,20 @@ namespace Videogadon.Data.Reposotories
             _videogadonDbContext = videogadonDbContext;
         }
 
-        public async Task<Comment?> GetAsync(int commentId)
+        public async Task<Comment?> GetAsync(int gameCategoryId, int gameId, int commentId)
         {
-            return await _videogadonDbContext.Comments.FirstOrDefaultAsync(x => x.Id == commentId);
+            return await _videogadonDbContext.Comments.FirstOrDefaultAsync(x =>x.GameCategoryId == gameCategoryId && x.GameId == gameId && x.Id == commentId);
         }
 
-        public async Task<IReadOnlyList<Comment>> GetManyAsync()
+        public async Task<List<Comment>> GetAsync(int gameCategoryId, int gameId)
+        {
+            return await _videogadonDbContext.Comments.Where(x => x.GameCategoryId == gameCategoryId && x.GameId == gameId).ToListAsync();
+        }
+
+/*        public async Task<IReadOnlyList<Comment>> GetManyAsync()
         {
             return await _videogadonDbContext.Comments.ToListAsync();
-        }
+        }*/
 
         public async Task CreateAsync(Comment comment)
         {

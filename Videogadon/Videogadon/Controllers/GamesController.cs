@@ -18,8 +18,9 @@ namespace Videogadon.Controllers
     [Route("api/gameCategories/{gameCategoryId}/games")]
     public class GamesController : ControllerBase
     {
-        private readonly IGamesRepository _gamesRepository;
         private readonly IGameCategoriesRepository _gameCategoriesRepository;
+
+        private readonly IGamesRepository _gamesRepository;
         public GamesController(IGamesRepository gamesRepository, IGameCategoriesRepository gameCategoriesRepository)
         {
             _gamesRepository = gamesRepository;
@@ -27,10 +28,10 @@ namespace Videogadon.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<GameDto>> GetMany(int gameCategoryId)
+        public async Task<IEnumerable<GameDto>> GetMany()
         {
-            var gameCategories = await _gamesRepository.GetAsync(gameCategoryId);
-            return gameCategories.Select(x => new GameDto(x.Id, x.Name, x.Description, x.Platform, x.ReleaseDate, x.Price, x.CreationDate));
+            var gameCategories = await _gamesRepository.GetManyAsync();
+            return gameCategories.Select(x => new GameDto(x.Id, x.Name, x.Description, x.Platform, x.ReleaseDate, x.Price, x.CreationDate, x.GameCategoryId));
         }
 
         // api/gameCategories/{gameCategoryId}/games/{gameId}
@@ -48,7 +49,7 @@ namespace Videogadon.Controllers
             var game = await _gamesRepository.GetAsync(gameCategoryId, gameId);
             if (game == null) return NotFound($"Couldn't find a game with id of {gameId}"); //404
 
-            return new GameDto(game.Id, game.Name, game.Description, game.Platform, game.ReleaseDate, game.Price, game.CreationDate);
+            return new GameDto(game.Id, game.Name, game.Description, game.Platform, game.ReleaseDate, game.Price, game.CreationDate, game.GameCategoryId);
         }
 
         // api/gameCategories/{gameCategoryId}/games
@@ -75,10 +76,10 @@ namespace Videogadon.Controllers
             await _gamesRepository.CreateAsync(game);
 
             //201
-            return Created($"api/gameCategories/{gameCategoryId}/games/{game.Id}", new GameDto(game.Id, game.Name, game.Description, game.Platform, game.ReleaseDate, game.Price, game.CreationDate));
+            return Created($"api/gameCategories/{gameCategoryId}/games/{game.Id}", new GameDto(game.Id, game.Name, game.Description, game.Platform, game.ReleaseDate, game.Price, game.CreationDate, game.GameCategoryId));
         }
 
-        // api/gameCategories/{gameCategoryId}/games
+        // api/gameCategories/{gameCategoryId}/games/{gameId}
         [HttpPut]
         [Route("{gameId}")]
         public async Task<ActionResult<GameDto>> Update(int gameCategoryId, int gameId, UpdateGameDto gameDto)
@@ -92,7 +93,7 @@ namespace Videogadon.Controllers
 
             if (game == null)
             {
-                return NotFound($"Couldn't find a game category with id of {gameId}");
+                return NotFound($"Couldn't find a game with id of {gameId}");
             }
             game.Name = gameDto.Name;
             game.Description = gameDto.Description;
@@ -100,7 +101,7 @@ namespace Videogadon.Controllers
             game.Price = gameDto.Price;
             await _gamesRepository.UpdateAsync(game);
 
-            return Ok(new GameDto(game.Id, game.Name, game.Description, game.Platform, game.ReleaseDate, game.Price, game.CreationDate));
+            return Ok(new GameDto(game.Id, game.Name, game.Description, game.Platform, game.ReleaseDate, game.Price, game.CreationDate, game.GameCategoryId));
 
         }
 

@@ -33,7 +33,7 @@ namespace Videogadon.Data.Reposotories
 
         public async Task<List<Game>> GetAsync(int gameCategoryId)
         {
-            return await _videogadonDbContext.Games.Where(x => x.Id == gameCategoryId).ToListAsync();
+            return await _videogadonDbContext.Games.Where(x => x.GameCategoryId == gameCategoryId).ToListAsync();
         }
 
         public async Task<IReadOnlyList<Game>> GetManyAsync()
