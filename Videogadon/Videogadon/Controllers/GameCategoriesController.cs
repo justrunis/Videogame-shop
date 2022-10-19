@@ -37,10 +37,9 @@ namespace Videogadon.Controllers
         {
             var gameCategory = await _gameCategoriesRepository.GetAsync(gameCategoryId);
 
-            // 404
             if (gameCategory == null)
             {
-                return NotFound();
+                return NotFound($"Cant find a game category with id {gameCategoryId}");// 404
             }
 
             return new GameCategoryDto(gameCategory.Id, gameCategory.Name, gameCategory.Description, gameCategory.CreationDate);
@@ -66,10 +65,9 @@ namespace Videogadon.Controllers
         {
             var gameCategory = await _gameCategoriesRepository.GetAsync(gameCategoryId);
 
-            // 404
             if (gameCategory == null)
             {
-                return NotFound();
+                return NotFound($"Cant find a game category with id {gameCategoryId}"); // 404
             }
             gameCategory.Description = updateGameCategoryDto.Description;
             await _gameCategoriesRepository.UpdateAsync(gameCategory);
@@ -84,10 +82,9 @@ namespace Videogadon.Controllers
         {
             var gameCategory = await _gameCategoriesRepository.GetAsync(gameCategoryId);
 
-            // 404
             if (gameCategory == null)
             {
-                return NotFound();
+                return NotFound($"Cant find a game category with id {gameCategoryId}"); // 404
             }
             await _gameCategoriesRepository.DeleteAsync(gameCategory);
 

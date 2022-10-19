@@ -38,6 +38,7 @@ namespace Videogadon.Data.Reposotories
 
         public async Task<IReadOnlyList<Game>> GetManyAsync()
         {
+            //return await _videogadonDbContext.Games.Where(x => x.GameCategoryId == gameCategoryId).ToListAsync();
             return await _videogadonDbContext.Games.ToListAsync();
         }
 

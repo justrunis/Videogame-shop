@@ -110,10 +110,16 @@ namespace Videogadon.Controllers
         [Route("{gameId}")]
         public async Task<ActionResult> Remove(int gameCategoryId, int gameId)
         {
+            var gameCategory = await _gameCategoriesRepository.GetAsync(gameCategoryId);
+            if (gameCategory == null)
+            {
+                return NotFound($"Couldn't find a game category with id of {gameCategoryId}");
+            }
+
             var game = await _gamesRepository.GetAsync(gameCategoryId, gameId);
             if (game == null)
             {
-                return NotFound();
+                return NotFound($"Couldn't find a game with id of {gameId}");
             }
             await _gamesRepository.DeleteAsync(game);
 
