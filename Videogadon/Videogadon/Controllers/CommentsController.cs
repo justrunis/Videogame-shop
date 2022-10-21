@@ -32,9 +32,9 @@ namespace Videogadon.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<CommentDto>> GetMany()
+        public async Task<IEnumerable<CommentDto>> GetMany(int gameId)
         {
-            var comments = await _commentsRepository.GetAsync();
+            var comments = await _commentsRepository.GetAsync(gameId);
             return comments.Select(x => new CommentDto(x.Id, x.Content, x.CreationDate, x.GameId));
         }
 

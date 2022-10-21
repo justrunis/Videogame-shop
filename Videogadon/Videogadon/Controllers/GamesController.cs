@@ -28,9 +28,9 @@ namespace Videogadon.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<GameDto>> GetMany()
+        public async Task<IEnumerable<GameDto>> GetMany(int gameCategoryId)
         {
-            var gameCategories = await _gamesRepository.GetManyAsync();
+            var gameCategories = await _gamesRepository.GetAsync(gameCategoryId);
             return gameCategories.Select(x => new GameDto(x.Id, x.Name, x.Description, x.Platform, x.ReleaseDate, x.Price, x.CreationDate, x.GameCategoryId));
         }
 
