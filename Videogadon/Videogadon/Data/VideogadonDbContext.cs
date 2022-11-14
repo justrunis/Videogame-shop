@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Videogadon.Auth.Model;
 using Videogadon.Data.Entities;
 
 namespace Videogadon.Data
 {
-    public class VideogadonDbContext : DbContext
+    public class VideogadonDbContext : IdentityDbContext<ShopRestUser>
     {
         public DbSet<GameCategory> GameCategories { get; set; }
         public DbSet<Game> Games { get; set; }

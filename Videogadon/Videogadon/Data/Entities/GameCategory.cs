@@ -1,10 +1,17 @@
-﻿namespace Videogadon.Data.Entities
+﻿using System.ComponentModel.DataAnnotations;
+using Videogadon.Auth.Model;
+
+namespace Videogadon.Data.Entities
 {
-    public class GameCategory
+    public class GameCategory : IUserOwnedResource
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime CreationDate { get; set; }
+
+        [Required]
+        public int UserId { get; set; }
+        public ShopRestUser User { get; set; }
     }
 }
