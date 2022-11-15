@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Videogadon.Auth;
 using Videogadon.Auth.Model;
@@ -6,6 +7,7 @@ using Videogadon.Auth.Model;
 namespace Videogadon.Controllers
 {
     [ApiController]
+    [AllowAnonymous]
     [Route("api")]
     public class AuthController : ControllerBase
     {
@@ -36,7 +38,7 @@ namespace Videogadon.Controllers
             if (!createUserResult.Succeeded)
                 return BadRequest("Could not create a user.");
 
-            await _userManager.AddToRoleAsync(newUser, ShopRoles.ShopUser);
+            var result = await _userManager.AddToRoleAsync(newUser, ShopRoles.ShopUser);
 
             return CreatedAtAction(nameof(Register), new UserDto(newUser.Id, newUser.UserName, newUser.Email));
         }

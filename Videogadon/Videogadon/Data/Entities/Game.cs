@@ -15,7 +15,7 @@ namespace Videogadon.Data.Entities
         public int GameCategoryId { get; set; }
 
         [Required]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public ShopRestUser User { get; set; }
 
         public GameCategory GameCategory { get; set; }

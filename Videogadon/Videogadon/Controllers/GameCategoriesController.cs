@@ -1,7 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+using Videogadon.Auth.Model;
 using Videogadon.Data.Dtos.GameCategories;
 using Videogadon.Data.Entities;
 using Videogadon.Data.Reposotories;
+using Microsoft.IdentityModel.JsonWebTokens;
+using System.Text.Json;
 
 namespace Videogadon.Controllers
 {
@@ -17,9 +22,11 @@ namespace Videogadon.Controllers
     public class GameCategoriesController : ControllerBase
     {
         private readonly IGameCategoriesRepository _gameCategoriesRepository;
-        public GameCategoriesController(IGameCategoriesRepository gameCategoriesRepository)
+        private readonly IAuthorizationService _authorizationService;
+        public GameCategoriesController(IGameCategoriesRepository gameCategoriesRepository, IAuthorizationService authorizationService)
         {
             _gameCategoriesRepository = gameCategoriesRepository;
+            _authorizationService = authorizationService;
         }
 
         [HttpGet]
@@ -47,10 +54,15 @@ namespace Videogadon.Controllers
 
         // api/gameCategories
         [HttpPost]
+        [Authorize(Roles = ShopRoles.ShopUser)]
         public async Task<ActionResult<GameCategoryDto>> Create(CreateGameCategoryDto createGameCategoryDto)
         {
             var gameCategory = new GameCategory 
-                { Name = createGameCategoryDto.Name, Description = createGameCategoryDto.Description, CreationDate = DateTime.UtcNow };
+                { Name = createGameCategoryDto.Name, 
+                Description = createGameCategoryDto.Description, 
+                CreationDate = DateTime.UtcNow, 
+                UserId = User.FindFirstValue(JwtRegisteredClaimNames.Sub)
+                };
 
             await _gameCategoriesRepository.CreateAsync(gameCategory);
 
@@ -61,6 +73,7 @@ namespace Videogadon.Controllers
         // api/gameCategories
         [HttpPut]
         [Route("{gameCategoryId}")]
+        [Authorize(Roles = ShopRoles.ShopUser)]
         public async Task<ActionResult<GameCategoryDto>> Update(int gameCategoryId, UpdateGameCategoryDto updateGameCategoryDto)
         {
             var gameCategory = await _gameCategoriesRepository.GetAsync(gameCategoryId);
@@ -69,6 +82,14 @@ namespace Videogadon.Controllers
             {
                 return NotFound($"Cant find a game category with id {gameCategoryId}"); // 404
             }
+
+            var authorizationResult = await _authorizationService.AuthorizeAsync(User, gameCategory, PolicyNames.ResourceOwner);
+            if (!authorizationResult.Succeeded)
+            {
+                // 404
+                return Forbid();
+            }
+
             gameCategory.Description = updateGameCategoryDto.Description;
             await _gameCategoriesRepository.UpdateAsync(gameCategory);
 
@@ -78,6 +99,7 @@ namespace Videogadon.Controllers
         // api/gameCategories/{gameCategoryId}
         [HttpDelete]
         [Route("{gameCategoryId}")]
+        [Authorize(Roles = ShopRoles.ShopUser)]
         public async Task<ActionResult> Remove(int gameCategoryId)
         {
             var gameCategory = await _gameCategoriesRepository.GetAsync(gameCategoryId);
@@ -85,6 +107,13 @@ namespace Videogadon.Controllers
             if (gameCategory == null)
             {
                 return NotFound($"Cant find a game category with id {gameCategoryId}"); // 404
+            }
+
+            var authorizationResult = await _authorizationService.AuthorizeAsync(User, gameCategory, PolicyNames.ResourceOwner);
+            if (!authorizationResult.Succeeded)
+            {
+                // 404
+                return Forbid();
             }
             await _gameCategoriesRepository.DeleteAsync(gameCategory);
 

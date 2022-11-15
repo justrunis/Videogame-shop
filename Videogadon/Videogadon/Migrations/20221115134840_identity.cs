@@ -11,12 +11,11 @@ namespace Videogadon.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<int>(
+            migrationBuilder.AddColumn<string>(
                 name: "UserId",
                 table: "Games",
-                type: "int",
-                nullable: false,
-                defaultValue: 0);
+                type: "nvarchar(450)",
+                nullable: true);
 
             migrationBuilder.AddColumn<string>(
                 name: "UserId1",
@@ -24,12 +23,11 @@ namespace Videogadon.Migrations
                 type: "nvarchar(450)",
                 nullable: true);
 
-            migrationBuilder.AddColumn<int>(
+            migrationBuilder.AddColumn<string>(
                 name: "UserId",
                 table: "GameCategories",
-                type: "int",
-                nullable: false,
-                defaultValue: 0);
+                type: "nvarchar(450)",
+                nullable: true);
 
             migrationBuilder.AddColumn<string>(
                 name: "UserId1",
@@ -37,12 +35,11 @@ namespace Videogadon.Migrations
                 type: "nvarchar(450)",
                 nullable: true);
 
-            migrationBuilder.AddColumn<int>(
+            migrationBuilder.AddColumn<string>(
                 name: "UserId",
                 table: "Comments",
-                type: "int",
-                nullable: false,
-                defaultValue: 0);
+                type: "nvarchar(450)",
+                nullable: true);
 
             migrationBuilder.AddColumn<string>(
                 name: "UserId1",

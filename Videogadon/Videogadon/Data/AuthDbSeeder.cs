@@ -28,8 +28,8 @@ namespace Videogadon.Data
                 Email = "admin@admin.com"
             };
 
-            var existingadminUser = await _userManager.FindByNameAsync(newAdminUser.UserName);
-            if (existingadminUser == null)
+            var existingAdminUser = await _userManager.FindByNameAsync(newAdminUser.UserName);
+            if (existingAdminUser == null)
             {
                 var createAdminUserResult = await _userManager.CreateAsync(newAdminUser, "VerySafePassword1!");
                 if (createAdminUserResult.Succeeded)
@@ -37,7 +37,6 @@ namespace Videogadon.Data
                     await _userManager.AddToRolesAsync(newAdminUser, ShopRoles.All);
                 }
             }
-
         }
 
         private async Task AddDefaultRoles()

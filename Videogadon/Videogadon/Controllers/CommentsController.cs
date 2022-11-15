@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.JsonWebTokens;
+using System.Security.Claims;
+using Videogadon.Auth.Model;
 using Videogadon.Data.Dtos.Comments;
 using Videogadon.Data.Dtos.GameCategories;
 using Videogadon.Data.Dtos.Games;
@@ -23,12 +27,14 @@ namespace Videogadon.Controllers
         private readonly IGameCategoriesRepository _gameCategoriesRepository;
         private readonly IGamesRepository _gamesRepository;
         private readonly ICommentsRepository _commentsRepository;
+        private readonly IAuthorizationService _authorizationService;
 
-        public CommentsController(IGameCategoriesRepository gameCategoriesRepository, IGamesRepository gamesRepository, ICommentsRepository commentsRepository)
+        public CommentsController(IGameCategoriesRepository gameCategoriesRepository, IGamesRepository gamesRepository, ICommentsRepository commentsRepository, IAuthorizationService authorizationService)
         {
             _gameCategoriesRepository = gameCategoriesRepository;
             _gamesRepository = gamesRepository;
             _commentsRepository = commentsRepository;
+            _authorizationService = authorizationService;
         }
 
         [HttpGet]
@@ -57,6 +63,7 @@ namespace Videogadon.Controllers
 
         // api/gameCategories/{gameCategoryId}/games/{gameId}/comments
         [HttpPost]
+        [Authorize(Roles = ShopRoles.ShopUser)]
         public async Task<ActionResult<CommentDto>> Create(int gameCategoryId, int gameId, CreateCommentDto createCommentDto)
         {
             var gameCategory = await _gameCategoriesRepository.GetAsync(gameCategoryId);
@@ -74,7 +81,9 @@ namespace Videogadon.Controllers
             var comment = new Comment
             {
                 Content = createCommentDto.Content,
-                CreationDate = DateTime.Now
+                CreationDate = DateTime.Now,
+                UserId = User.FindFirstValue(JwtRegisteredClaimNames.Sub)
+
             };
             comment.GameId = gameId;
             await _commentsRepository.CreateAsync(comment);
@@ -86,6 +95,7 @@ namespace Videogadon.Controllers
         // api/gameCategories/{gameCategoryId}/games/{gameId}/comments/{commentId}
         [HttpPut]
         [Route("{commentId}")]
+        [Authorize(Roles = ShopRoles.ShopUser)]
         public async Task<ActionResult<CommentDto>> Update(int gameCategoryId, int gameId, int commentId, UpdateCommentDto commentDto)
         {
             var gameCategory = await _gameCategoriesRepository.GetAsync(gameCategoryId);
@@ -106,6 +116,13 @@ namespace Videogadon.Controllers
                 return NotFound($"Couldn't find a comment with id of {commentId}"); //404
             }
 
+            var authorizationResult = await _authorizationService.AuthorizeAsync(User, comment, PolicyNames.ResourceOwner);
+            if (!authorizationResult.Succeeded)
+            {
+                // 404
+                return Forbid();
+            }
+
             comment.Content = commentDto.Content;
             await _commentsRepository.UpdateAsync(comment);
 
@@ -115,6 +132,7 @@ namespace Videogadon.Controllers
         // api/gameCategories/{gameCategoryId}/games/{gameId}/comments/{commentId}
         [HttpDelete]
         [Route("{commentId}")]
+        [Authorize(Roles = ShopRoles.ShopUser)]
         public async Task<ActionResult> Remove(int gameCategoryId,int gameId, int commentId)
         {
             var gameCategory = await _gameCategoriesRepository.GetAsync(gameCategoryId);
@@ -134,6 +152,14 @@ namespace Videogadon.Controllers
             {
                 return NotFound($"Couldn't find a comment with id of {commentId}"); //404
             }
+
+            var authorizationResult = await _authorizationService.AuthorizeAsync(User, comment, PolicyNames.ResourceOwner);
+            if (!authorizationResult.Succeeded)
+            {
+                // 404
+                return Forbid();
+            }
+
             await _commentsRepository.DeleteAsync(comment);
 
             return NoContent();// 204

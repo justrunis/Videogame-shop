@@ -4,5 +4,6 @@ namespace Videogadon.Auth.Model
 {
     public class ShopRestUser : IdentityUser
     {
+
     }
 }

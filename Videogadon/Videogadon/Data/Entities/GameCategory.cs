@@ -11,7 +11,7 @@ namespace Videogadon.Data.Entities
         public DateTime CreationDate { get; set; }
 
         [Required]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public ShopRestUser User { get; set; }
     }
 }
