@@ -9,8 +9,22 @@ using Videogadon.Auth.Model;
 using Videogadon.Data;
 using Videogadon.Data.Reposotories;
 
+
+var MyAllowSpecificOrigins = "_myAllowedSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:3000",
+                                              "http://www.contoso.com"); // add the allowed origins
+                      });
+});
+
+// services.AddResponseCaching();
 
 builder.Services.AddControllers();
 
@@ -51,11 +65,16 @@ builder.Services.AddSingleton<IAuthorizationHandler, ResourceOwnerAuthorizationH
 
 var app = builder.Build();
 
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
 app.UseRouting();
 app.MapControllers();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseCors(MyAllowSpecificOrigins);
 
 var dbSeeder = app.Services.CreateScope().ServiceProvider.GetRequiredService<AuthDbSeeder>();
 await dbSeeder.SeedAsync();
