@@ -83,14 +83,3 @@ D:\University stuff\4 kursas\1 semestras\Saityno taikomųjų programų projektav
 D:\University stuff\4 kursas\1 semestras\Saityno taikomųjų programų projektavimas\Videogame-shop\Videogame-shop\Videogadon\Videogadon\bin\Debug\net6.0\System.Text.Encodings.Web.dll
 D:\University stuff\4 kursas\1 semestras\Saityno taikomųjų programų projektavimas\Videogame-shop\Videogame-shop\Videogadon\Videogadon\bin\Debug\net6.0\System.Text.Json.dll
 D:\University stuff\4 kursas\1 semestras\Saityno taikomųjų programų projektavimas\Videogame-shop\Videogame-shop\Videogadon\Videogadon\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
-D:\University stuff\4 kursas\1 semestras\Saityno taikomųjų programų projektavimas\Videogame-shop\Videogame-shop\Videogadon\Videogadon\bin\Debug\net6.0\Microsoft.OpenApi.dll
-D:\University stuff\4 kursas\1 semestras\Saityno taikomųjų programų projektavimas\Videogame-shop\Videogame-shop\Videogadon\Videogadon\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
-D:\University stuff\4 kursas\1 semestras\Saityno taikomųjų programų projektavimas\Videogame-shop\Videogame-shop\Videogadon\Videogadon\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-D:\University stuff\4 kursas\1 semestras\Saityno taikomųjų programų projektavimas\Videogame-shop\Videogame-shop\Videogadon\Videogadon\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-D:\University stuff\4 kursas\1 semestras\Saityno taikomųjų programų projektavimas\Videogame-shop\Videogame-shop\Videogadon\Videogadon\obj\Debug\net6.0\Videogadon.MvcApplicationPartsAssemblyInfo.cs
-D:\University stuff\4 kursas\1 semestras\Saityno taikomųjų programų projektavimas\Videogame-shop\Videogame-shop\Videogadon\Videogadon\bin\Debug\net6.0\System.Web.Cors.dll
-D:\University stuff\4 kursas\1 semestras\Saityno taikomųjų programų projektavimas\Videogame-shop\Videogame-shop\Videogadon\Videogadon\bin\Debug\net6.0\System.Net.Http.Formatting.dll
-D:\University stuff\4 kursas\1 semestras\Saityno taikomųjų programų projektavimas\Videogame-shop\Videogame-shop\Videogadon\Videogadon\bin\Debug\net6.0\System.Web.Http.dll
-D:\University stuff\4 kursas\1 semestras\Saityno taikomųjų programų projektavimas\Videogame-shop\Videogame-shop\Videogadon\Videogadon\bin\Debug\net6.0\System.Web.Http.Cors.dll
-D:\University stuff\4 kursas\1 semestras\Saityno taikomųjų programų projektavimas\Videogame-shop\Videogame-shop\Videogadon\Videogadon\bin\Debug\net6.0\Newtonsoft.Json.dll
-D:\University stuff\4 kursas\1 semestras\Saityno taikomųjų programų projektavimas\Videogame-shop\Videogame-shop\Videogadon\Videogadon\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
