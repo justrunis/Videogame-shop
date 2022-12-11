@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="Videogadon" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\University\ stuff\\4\ kursas\\1\ semestras\\Saityno\ taikomųjų\ programų\ projektavimas\\Videogame-shop\\Videogame-shop\\Videogadon\\Videogadon\\obj\\Release\\net6\.0\\PubTmp\\Out\\$" />
+  </parameter>
+</parameters>

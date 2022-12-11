@@ -16,6 +16,7 @@ namespace Videogadon.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB; Initial Catalog=VideogadonDb");
+            //optionsBuilder.UseSqlServer("Data Source=tcp:videogadondbserver.database.windows.net,1433;Initial Catalog=Videogadon_db;User Id=justrunis@videogadondbserver;Password=Britva14");
         }
 
     }
