@@ -1,11 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
-import {Home} from './Home';
-import {GameCategory} from './GameCategory'
-import {Game} from './Game'
-import {Comment} from './Comment'
+import {Home} from './Routes/Home';
+import {GameCategories} from './Routes/GameCategories'
+import {Games} from './Routes/Games'
+import {Comments} from './Routes/Comments'
 import {BrowserRouter, Route , Routes , NavLink} from 'react-router-dom';
-import Register from './Register';
+import Register from './Routes/Register';
+import Login from './Routes/Login';
 
 function App() {
   return (
@@ -22,17 +22,17 @@ function App() {
           </NavLink>
           </li>
           <li className='nav-item m-1'>
-          <NavLink className='btn btn-light btn-outline-primary' to ='/gameCategory'>
+          <NavLink className='btn btn-light btn-outline-primary' to ='/gameCategories'>
             Game Categories
           </NavLink>
           </li>
           <li className='nav-item m-1'>
-          <NavLink className='btn btn-light btn-outline-primary' to ='/game'>
+          <NavLink className='btn btn-light btn-outline-primary' to ='/games'>
             Games
           </NavLink>
           </li>
           <li className='nav-item m-1'>
-          <NavLink className='btn btn-light btn-outline-primary' to ='/comment'>
+          <NavLink className='btn btn-light btn-outline-primary' to ='/comments'>
             Comments
           </NavLink>
           </li>
@@ -41,15 +41,21 @@ function App() {
             Register
           </NavLink>
           </li>
+          <li className='nav-item m-1'>
+          <NavLink className='btn btn-light btn-outline-primary' to ='/login'>
+            Login
+          </NavLink>
+          </li>
         </ul>
       </nav>
 
       <Routes>
         <Route path = '/home' element={<Home/>}/>
-        <Route path = '/gameCategory' element={<GameCategory/>}/>
-        <Route path = '/game' element={<Game/>}/>
-        <Route path = '/comment' element={<Comment/>}/>
+        <Route path = '/gameCategories' element={<GameCategories/>}/>
+        <Route path = '/games' element={<Games/>}/>
+        <Route path = '/comments' element={<Comments/>}/>
         <Route path = '/register' element={<Register/>}/>
+        <Route path = '/login' element={<Login/>}/>
       </Routes>
     </div>
     </BrowserRouter>

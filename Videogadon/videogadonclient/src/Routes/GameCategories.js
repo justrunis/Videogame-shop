@@ -1,7 +1,13 @@
-import React, {Component} from "react";
-import { variables } from "./Variables.js";
+import React, {Component, useEffect, useState} from "react";
+import { variables } from "../Variables.js";
+import { Navigate } from 'react-router-dom';
+import AuthUser from "../Services/AuthUser";
+import GameCategory from "../Components/GameCategory"
+import { Card } from "flowbite-react";
+import { useNavigate } from 'react-router-dom';
 
-export class GameCategory extends Component{
+
+export class GameCategories extends Component{
 
     constructor(props){
         super(props);
@@ -193,13 +199,13 @@ export class GameCategory extends Component{
                                     onChange={this.changeGameCategoryName}/>
                                 </div>
 
-                                {GameCategoryId==0?
+                                {GameCategoryId===0?
                                 <button type ="button" className="btn btn-primary float-start">
                                     Create
                                 </button>
                                 :null}
 
-                                {GameCategoryId!=0?
+                                {GameCategoryId!==0?
                                 <button type ="button" className="btn btn-primary float-start">
                                     Update
                                 </button>
