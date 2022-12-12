@@ -5,8 +5,73 @@ import AuthUser from "../Services/AuthUser";
 import GameCategory from "../Components/GameCategory"
 import { Card } from "flowbite-react";
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import gameCategory from "../Components/GameCategory";
 
 
+const AllGameCategories = () =>{
+
+    const navigate = useNavigate();
+    const { http, getUser, getToken } = AuthUser();
+        
+        const[gameCategories, setGameCategories] = useState([]);
+    useEffect(() =>{
+        fetchGamecateogories();
+    } , []);
+
+    const fetchGamecateogories = () =>{
+        axios.get("http://localhost:5001/api/gameCategories")
+        .then((res) => {
+            //console.log(res);
+            setGameCategories(res.data);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    };
+
+    let ViewGames = (id) =>{
+        console.log("view games for id:", id);
+        navigate(`api/gameCategories/${id}/games`)
+
+    }
+
+    let EditGameCategory = async (id) =>{
+        console.log("edit game category with id", id);
+    }
+
+    let RemoveGameCategory = (id) =>{
+        console.log("remove game category with id", id);
+    }
+
+    return(
+        <div>
+            <h3>All game categories</h3>
+            <div className="item-container">
+                <div>
+                    <button  className="btn btn-secondary">Create new category</button>
+                </div>
+                {gameCategories.map((gameCategory) => (
+                              <div className='card'>
+                                <img src="https://pic.onlinewebfonts.com/svg/img_222604.png" alt=""></img>
+                                <h3>{gameCategory.name}</h3>
+                                <p1>{gameCategory.description}</p1>
+                                <br></br>
+                                <button onClick={ () => ViewGames(gameCategory.id)}  className="btn btn-info">View games</button>
+                                <br></br>
+                                <button onClick={ () => EditGameCategory(gameCategory.id)}  className="btn btn-dark">Edit</button>
+                                <br></br>
+                                <button onClick={ () => RemoveGameCategory(gameCategory.id)}  className="btn btn-danger">Remove</button>
+                                <br></br>
+                              </div>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+export default AllGameCategories;
+/*
 export class GameCategories extends Component{
 
     constructor(props){
@@ -133,6 +198,10 @@ export class GameCategories extends Component{
                 <button type = "button" className="btn btn-primary m-2 float-end" data-bs-toggle="modal" data-bs-target="exampleModal" onClick={()=>this.addClick()}>
                     Add Game Category
                 </button>
+
+
+
+
                 <table className="table table-striped">
                     <thead>
                         <tr>
@@ -223,4 +292,4 @@ export class GameCategories extends Component{
             </div>
         )
     }
-}
+}*/
