@@ -1,10 +1,13 @@
+import React, {Component} from "react";
 import AllGameCategories from '../Routes/GameCategories';
 import '../App.css';
-function GameCategory() {
-  return (
-    <div className='gameCategory'>
-          <AllGameCategories></AllGameCategories>
-    </div>
-  );
+
+export class GameCategory extends Component{
+    render(){
+        return(
+            <div>
+                <AllGameCategories></AllGameCategories>
+            </div>
+        )
+    }
 }
-export default GameCategory;
