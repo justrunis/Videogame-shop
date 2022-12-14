@@ -6,6 +6,7 @@ import Register from './Routes/Register';
 import Login from './Routes/Login';
 import {Game} from "./Pages/Game";
 import {GameComponent} from "./Components/Game";
+import { GameCategory } from './Components/GameCategory';
 
 function App() {
   return (
@@ -38,6 +39,8 @@ function App() {
 
       <Routes>
         <Route path = '/home' element={<Home/>}/>
+        <Route path = '/' element={<Home/>}/>
+        <Route path = 'home/api/gameCategories' element={<GameCategory/>}/>
         <Route path = 'home/api/gameCategories/:id1/games' element={<Game/>}/>
         <Route path = 'home/api/gameCategories/:id1/games/:id2' element={<GameComponent/>}/>
         <Route path = 'home/api/gameCategories/:id1/games/:id2/comments' element={<Comments/>}/>

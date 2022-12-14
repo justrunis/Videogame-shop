@@ -42,6 +42,19 @@ const AllGames = () =>{
 
     let RemoveGame = (id) =>{
         console.log("remove game with id", id);
+        http.delete(`/gameCategories/${id1}/games/${id}`,{
+            headers:{
+                "Content-type": "application/json",
+                "Authorization": `Bearer ${getToken()}`
+            },
+        }).then((res) => {
+            console.log(res.data);
+        }).catch((error) => {
+            alert("Cant delete game");
+            navigate(`/home/gameCategories/${id1}/games`);
+        })
+        window.location.reload(false);  
+        navigate("/home/gameCategories/${id1}/games");
     }
 
     return(

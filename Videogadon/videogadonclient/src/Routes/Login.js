@@ -28,10 +28,13 @@ function Login(){
         }).then((res) => {
             
             console.log(res.data);
-            setToken(res.data.user, res.data.access_token);
+            console.log("User",usernameReq)
+            console.log("Token", res.data.accessToken)
+            setToken(usernameReq, res.data.accessToken);
 
         }).catch((error) => {
             alert("Bad login details");
+            window.location.reload(false);  
             navigate('/login');
         })  
     };

@@ -38,6 +38,19 @@ const AllComments = () =>{
 
     let RemoveComment = (id) =>{
         console.log("remove comment with id", id);
+        http.delete(`/gameCategories/${id1}/games/${id2}/comments/${id}`,{
+            headers:{
+                "Content-type": "application/json",
+                "Authorization": `Bearer ${getToken()}`
+            },
+        }).then((res) => {
+            console.log(res.data);
+        }).catch((error) => {
+            alert("Cant delete comment");
+            navigate(`/home/gameCategories/${id1}/games/${id2}/comments`);
+        })
+        window.location.reload(false);  
+        navigate("/home/gameCategories/${id1}/games/${id2}/comments");
     }
 
     return(

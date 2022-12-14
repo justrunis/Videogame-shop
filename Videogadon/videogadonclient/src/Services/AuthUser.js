@@ -8,44 +8,47 @@ export default function AuthUser() {
     const getToken = () => {
         const tokenString = sessionStorage.getItem('accessToken');
         const userToken = JSON.parse(tokenString);
+        console.log(userToken);
         return userToken;
     }
 
     const getUser = () => {
-        const userString = sessionStorage.getItem('userName');
+        const userString = sessionStorage.getItem('accessToken');
         const user_detail = JSON.parse(userString);
+        //console.log(user_detail);
         return user_detail;
     }
 
-    const [token, setToken] = useState(getToken());
-    const [user, setUser] = useState(getUser());
+    const [accessToken, setToken] = useState(getToken());
+    const [userName, setUser] = useState(getUser());
 
-    const saveToken = (user, token) => {
-        sessionStorage.setItem('accessToken', JSON.stringify(token));
-        sessionStorage.setItem('userName', JSON.stringify(user));
+    const saveToken = (userName, accessToken) => {
+        sessionStorage.setItem('accessToken', JSON.stringify(accessToken));
+        sessionStorage.setItem('userName', JSON.stringify(userName));
 
-        setToken(token);
-        setUser(user);
-        navigate('/');
+        setToken(accessToken);
+        setUser(userName);
+        navigate('/home');
     }
 
     const logout = () => {
         sessionStorage.clear();
-        navigate('/');
+        navigate('http://localhost:5001/api/gameCateogires');
     }
 
     const http = axios.create({
         baseURL: "http://localhost:5001/api",
         headers: {
+            "Accept":"application/json",
             "Content-type": "application/json",
-            "Authorization": `Bearer ${token}`
+            "Authorization": `Bearer ${accessToken}`
         }
 
     });
     return {
         setToken: saveToken,
-        token,
-        user,
+        accessToken,
+        userName,
         getToken,
         http,
         logout,

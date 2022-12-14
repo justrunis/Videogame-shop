@@ -7,12 +7,15 @@ import { Card } from "flowbite-react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import gameCategory from "../Components/GameCategory";
+import AddGameCategory from "../Components/AddGameCategory";
 
 
 const AllGameCategories = () =>{
 
     const navigate = useNavigate();
     const { http, getUser, getToken } = AuthUser();
+    const [GameCategory, setPost] = useState("");
+
         
         const[gameCategories, setGameCategories] = useState([]);
     useEffect(() =>{
@@ -40,8 +43,26 @@ const AllGameCategories = () =>{
         console.log("edit game category with id", id);
     }
 
+    let CreateGameCategory = async () =>{
+        console.log("create new game category");
+        navigate(`api/gameCategories/`)
+    }
+
     let RemoveGameCategory = (id) =>{
         console.log("remove game category with id", id);
+        http.delete(`/gameCategories/${id}`,{
+            headers:{
+                "Content-type": "application/json",
+                "Authorization": `Bearer ${getToken()}`
+            },
+        }).then((res) => {
+            console.log(res.data);
+        }).catch((error) => {
+            alert("Cant delete game category");
+            navigate(`/home`);
+        })
+        window.location.reload(false);  
+        navigate("/home");
     }
 
     return(
@@ -49,9 +70,19 @@ const AllGameCategories = () =>{
             <br></br>
             <h2>All game categories</h2>
             <br></br>
+            {getUser() != null ?(
                 <div className="item-container">
-                    <button  className="btn btn-secondary">Create new category</button>
+                    <button onClick={ () => CreateGameCategory()} className="btn btn-secondary">Create new category</button>
                 </div>
+            ): null}
+                <div className="modal">
+                <div className="overlay"></div>
+                <div className="modal-content">
+                    <h2>
+                        Hello world!
+                    </h2>
+                </div>
+            </div>
                 <br></br>
             <div className="item-container">
                 {gameCategories.map((gameCategory) => (
@@ -62,14 +93,18 @@ const AllGameCategories = () =>{
                                 <br></br>
                                 <button onClick={ () => ViewGames(gameCategory.id)}  className="btn btn-info">View games</button>
                                 <br></br>
+                                {getUser() != null && getUser().id == GameCategory.UserId ?(
                                 <button onClick={ () => EditGameCategory(gameCategory.id)}  className="btn btn-dark">Edit</button>
+                                ) : null}
                                 <br></br>
+                                {getUser() != null && getUser().id == GameCategory.UserId ?(
                                 <button onClick={ () => RemoveGameCategory(gameCategory.id)}  className="btn btn-danger">Remove</button>
-                                <br></br>
+                                ) : null}
                               </div>
                 ))}
             </div>
         </div>
+        
     );
 };
 
