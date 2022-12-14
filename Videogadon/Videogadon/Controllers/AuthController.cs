@@ -15,6 +15,7 @@ namespace Videogadon.Controllers
 
         private readonly IJwtTokenService _jwtTokenService;
 
+
         public AuthController(UserManager<ShopRestUser> userManager, IJwtTokenService jwtTokenService)
         {
             _userManager = userManager;
@@ -23,7 +24,7 @@ namespace Videogadon.Controllers
 
         [HttpPost]
         [Route("register")]
-        public async Task<IActionResult> Register(RegisterUserDto registerUserDto)
+        public async Task<IActionResult> Register ([FromBody] RegisterUserDto registerUserDto)
         {
             var user = await _userManager.FindByNameAsync(registerUserDto.UserName);
             if (user != null)
@@ -45,7 +46,7 @@ namespace Videogadon.Controllers
 
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> Login(LoginDto loginDto)
+        public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {
             var user = await _userManager.FindByNameAsync(loginDto.UserName);
             if (user == null)

@@ -14,7 +14,18 @@ var MyAllowSpecificOrigins = "_myAllowedSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
+
+const string corsPolicyName = "ApiCORS";
+
 builder.Services.AddCors(options =>
+{
+    options.AddPolicy(corsPolicyName, policy =>
+    {
+        policy.WithOrigins("http://localhost:3000");
+    });
+});
+
+/*builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
                       policy =>
@@ -22,7 +33,7 @@ builder.Services.AddCors(options =>
                           policy.WithOrigins("http://localhost:3000",
                                               "http://www.contoso.com"); // add the allowed origins
                       });
-});
+});*/
 
 // services.AddResponseCaching();
 
@@ -65,16 +76,19 @@ builder.Services.AddSingleton<IAuthorizationHandler, ResourceOwnerAuthorizationH
 
 var app = builder.Build();
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
 
 app.UseRouting();
 app.MapControllers();
 
+app.UseHttpsRedirection();
+
+app.UseCors(corsPolicyName);
+
+app.UseStaticFiles();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseCors(MyAllowSpecificOrigins);
 
 var dbSeeder = app.Services.CreateScope().ServiceProvider.GetRequiredService<AuthDbSeeder>();
 await dbSeeder.SeedAsync();

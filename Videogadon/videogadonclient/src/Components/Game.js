@@ -40,6 +40,7 @@ const GameComp = () =>{
         <div>
             <div className="row justify-content-center">
                 <div class="container">
+                    <br></br>
                     <h1>{game.name}</h1>
                     <br></br>
                         <table id="gameInfo">

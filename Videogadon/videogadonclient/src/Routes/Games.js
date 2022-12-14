@@ -14,16 +14,16 @@ const AllGames = () =>{
     const navigate = useNavigate();
     const { http, getUser, getToken } = AuthUser();
         
-        const[gameCategories, setGameCategories] = useState([]);
+        const[games, setGames] = useState([]);
     useEffect(() =>{
-        fetchGamecateogories();
+        fetchGames();
     } , []);
 
-    const fetchGamecateogories = () =>{
+    const fetchGames = () =>{
         axios.get(`http://localhost:5001/api/gameCategories/${id1}/games`)
         .then((res) => {
             //console.log(res);
-            setGameCategories(res.data);
+            setGames(res.data);
         })
         .catch((err) => {
             console.log(err);
@@ -46,17 +46,20 @@ const AllGames = () =>{
 
     return(
         <div>
-            <h3>All games</h3>
-            <div className="item-container">
-                <div>
+            <br></br>
+                <h2>All games</h2>
+            <br></br>
+                <div className="item-container">
                     <button  className="btn btn-secondary">Create new game</button>
                 </div>
-                {gameCategories.map((game) => (
+                <br></br>
+            <div className="item-container">
+                {games.map((game) => (
                               <div className='card'>
                                 <img src="https://www.iconpacks.net/icons/1/free-game-controller-icon-1416-thumb.png" alt=""></img>
                                 <h3>{game.name}</h3>
                                 <br></br>
-                                <button onClick={ () => ViewGame(game.id)}  className="btn btn-info">More about</button>
+                                <button onClick={ () => ViewGame(game.id)}  className="btn btn-info">More about {game.name}</button>
                                 <br></br>
                                 <button onClick={ () => EditGame(game.id)}  className="btn btn-dark">Edit</button>
                                 <br></br>

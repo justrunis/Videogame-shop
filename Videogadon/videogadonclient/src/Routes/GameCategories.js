@@ -46,11 +46,14 @@ const AllGameCategories = () =>{
 
     return(
         <div>
-            <h3>All game categories</h3>
-            <div className="item-container">
-                <div>
+            <br></br>
+            <h2>All game categories</h2>
+            <br></br>
+                <div className="item-container">
                     <button  className="btn btn-secondary">Create new category</button>
                 </div>
+                <br></br>
+            <div className="item-container">
                 {gameCategories.map((gameCategory) => (
                               <div className='card'>
                                 <img src="https://pic.onlinewebfonts.com/svg/img_222604.png" alt=""></img>
