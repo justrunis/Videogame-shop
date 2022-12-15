@@ -7,12 +7,14 @@ import { Card } from "flowbite-react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import gameCategory from "../Components/GameCategory";
+import { Game } from "../Pages/Game.js";
 
 const AllGames = () =>{
 
     let { id1 } = useParams();
     const navigate = useNavigate();
     const { http, getUser, getToken } = AuthUser();
+    const [Game, setGame] = useState("");
         
         const[games, setGames] = useState([]);
     useEffect(() =>{
@@ -36,8 +38,14 @@ const AllGames = () =>{
 
     }
 
+    let CreateGame = async () =>{
+        console.log("create new game ");
+        navigate(`game`)
+    }
+
     let EditGame = async (id) =>{
         console.log("edit game with id", id);
+        navigate(`game/${id}`)
     }
 
     let RemoveGame = (id) =>{
@@ -62,10 +70,12 @@ const AllGames = () =>{
             <br></br>
                 <h2>All games</h2>
             <br></br>
+            {getUser() != null ?(
                 <div className="item-container">
-                    <button  className="btn btn-secondary">Create new game</button>
+                    <button onClick={ () => CreateGame()} className="btn btn-secondary">Create new game</button>
                 </div>
-                <br></br>
+            ): null}
+            <br></br>
             <div className="item-container">
                 {games.map((game) => (
                               <div className='card'>
@@ -74,9 +84,13 @@ const AllGames = () =>{
                                 <br></br>
                                 <button onClick={ () => ViewGame(game.id)}  className="btn btn-info">More about {game.name}</button>
                                 <br></br>
+                                {getUser() != null && getUser().id == Game.UserId ?(
                                 <button onClick={ () => EditGame(game.id)}  className="btn btn-dark">Edit</button>
+                                ) : null}
                                 <br></br>
+                                {getUser() != null && getUser().id == Game.UserId ?(
                                 <button onClick={ () => RemoveGame(game.id)}  className="btn btn-danger">Remove</button>
+                                ) : null}
                                 <br></br>
                               </div>
                 ))}

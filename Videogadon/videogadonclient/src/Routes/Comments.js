@@ -32,8 +32,14 @@ const AllComments = () =>{
         });
     };
 
+    let CreateComment = async () =>{
+        console.log("create new comment ");
+        navigate(`comment`);
+    }
+
     let EditComment = async (id) =>{
         console.log("edit comment with id", id);
+        navigate(`comment/${id}`);
     }
 
     let RemoveComment = (id) =>{
@@ -58,24 +64,26 @@ const AllComments = () =>{
             <br></br>
                 <h2>All comments</h2>
             <br></br>
+            {getUser() != null ?(
                 <div className="item-container">
-                    <button  className="btn btn-secondary">Create new comment</button>
+                    <button onClick={ () => CreateComment()} className="btn btn-secondary">Create new comment</button>
                 </div>
+            ): null}
             <br></br>
                 <div className="item-container">
                     {comments.map((comment) => (
                         <table id="gameInfo">
-                            <tr>
-                                <th>Comment</th>
-                                <th>Date</th>
-                                <th>Edit</th>
-                                <th>Remove</th>
+                            <tr align='center'>
+                                <th align='center'>Comment</th>
+                                <th align='center'>Date</th>
+                                <th align='center'>Edit</th>
+                                <th align='center'>Remove</th>
                             </tr>
                             <tr>
                                 <td>{comment.content}</td>
                                 <td>{comment.creationDate}</td>
-                                <td align='center'><button onClick={ () => EditComment(comment.id)}  className="btn btn-dark">Edit</button></td>
-                                <td align='center'><button onClick={ () => RemoveComment(comment.id)}  className="btn btn-danger">Remove</button></td>
+                                <td align='center'><button onClick={ () => EditComment(comment.id)}  className="btn btn-dark btn-block">Edit</button></td>
+                                <td align='center'><button onClick={ () => RemoveComment(comment.id)}  className="btn btn-danger btn-block">Remove</button></td>
                             </tr>
                         </table>
                     ))}

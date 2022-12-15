@@ -7,7 +7,6 @@ import { Card } from "flowbite-react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import gameCategory from "../Components/GameCategory";
-import AddGameCategory from "../Components/AddGameCategory";
 
 
 const AllGameCategories = () =>{
@@ -17,7 +16,7 @@ const AllGameCategories = () =>{
     const [GameCategory, setPost] = useState("");
 
         
-        const[gameCategories, setGameCategories] = useState([]);
+    const[gameCategories, setGameCategories] = useState([]);
     useEffect(() =>{
         fetchGamecateogories();
     } , []);
@@ -41,6 +40,7 @@ const AllGameCategories = () =>{
 
     let EditGameCategory = async (id) =>{
         console.log("edit game category with id", id);
+        navigate(`api/gameCategories/${id}`)
     }
 
     let CreateGameCategory = async () =>{
