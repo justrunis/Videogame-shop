@@ -15,6 +15,7 @@ const AllComments = () =>{
     let { id2 } = useParams();
     const navigate = useNavigate();
     const { http, getUser, getToken } = AuthUser();
+    const [Comment, setPost] = useState("");
         
         const[comments, setComments] = useState([]);
     useEffect(() =>{
@@ -73,17 +74,27 @@ const AllComments = () =>{
                 <div className="item-container">
                     {comments.map((comment) => (
                         <table id="gameInfo">
-                            <tr align='center'>
-                                <th align='center'>Comment</th>
-                                <th align='center'>Date</th>
-                                <th align='center'>Edit</th>
-                                <th align='center'>Remove</th>
+                            <tr class="tableformat">
+                                <th>Comment</th>
+                                <th>Date</th>
+                                {getUser() != null && getUser().id == Comment.UserId ?(
+                                <th>Edit</th>
+                                ) : null}
+                                {getUser() != null && getUser().id == Comment.UserId ?(
+                                <th>Remove</th>
+                                ) : null}
+                                
                             </tr>
-                            <tr>
+                            <tr class="tableformat">
                                 <td>{comment.content}</td>
                                 <td>{comment.creationDate}</td>
-                                <td align='center'><button onClick={ () => EditComment(comment.id)}  className="btn btn-dark btn-block">Edit</button></td>
-                                <td align='center'><button onClick={ () => RemoveComment(comment.id)}  className="btn btn-danger btn-block">Remove</button></td>
+                                {getUser() != null && getUser().id == Comment.UserId ?(
+                                <td><button onClick={ () => EditComment(comment.id)}  className="btn btn-dark btn-block">Edit</button></td>
+                                ) : null}
+                                {getUser() != null && getUser().id == Comment.UserId ?(
+                                <td><button onClick={ () => RemoveComment(comment.id)}  className="btn btn-danger btn-block">Remove</button></td>
+                                ) : null}
+                                
                             </tr>
                         </table>
                     ))}

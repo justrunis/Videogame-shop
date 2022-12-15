@@ -95,7 +95,7 @@ td {
 #gameInfo {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  width: 50%;
 }
 
 #gameInfo td, #gameInfo th {
@@ -110,7 +110,26 @@ td {
 #gameInfo th {
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: left;
+  text-align: center;
   background-color: grey;
   color: white;
+}
+
+.tableformat td:nth-child(1){
+  width: 1000px;
+}
+.tableformat td:nth-child(2){
+  width: 500px;
+}
+.tableformat td:nth-child(3){
+  width: 500px;
+}
+.tableformat td:nth-child(4){
+  width: 400px;
+}
+
+@media only screen and (min-width: 1024px) {
+  .container header .header-nav-area #nav_container  {
+    display:flex;
+  }
 }

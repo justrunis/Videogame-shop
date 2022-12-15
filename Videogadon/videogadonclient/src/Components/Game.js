@@ -43,6 +43,7 @@ const GameComp = () =>{
                     <br></br>
                     <h1>{game.name}</h1>
                     <br></br>
+                    <div className="item-container">
                         <table id="gameInfo">
                             <tr>
                                 <th>Platform</th>
@@ -61,6 +62,7 @@ const GameComp = () =>{
                                 <td>{game.price}</td>
                             </tr>
                         </table>
+                    </div>
                 </div>
                 <br></br>
             </div>

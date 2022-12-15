@@ -32,7 +32,7 @@ const CreateCommentComp = () =>{
             navigate(`/home/api/gameCategories/${id1}/games/${id2}/comments`);
             console.log(res.data);
         }).catch((error) => {
-            alert("Cant create a game");
+            alert("Cant create a comment");
             navigate(`/home/api/gameCategories/${id1}games/${id2}/comments`);
         })
     }

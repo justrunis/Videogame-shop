@@ -9,7 +9,7 @@ import { Navigate, useParams} from 'react-router-dom';
 const EditGameCategoryComp = () =>{
 
 
-    const [description, setDescription] = useState('')
+    const [description, setDescription] = useState('');
 
     let { id1 } = useParams();
     const navigate = useNavigate();
