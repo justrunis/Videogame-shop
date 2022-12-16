@@ -67,9 +67,10 @@ const GameComp = () =>{
                 <br></br>
             </div>
                 <br></br>
-                    <div class="col text-center">
-                        <button onClick={ () => ViewComments(game.id)}  className="btn btn-info centre">View comments</button>
+                    <div class="h-100 d-flex align-items-center justify-content-center">
+                        <button onClick={ () => ViewComments(game.id)}  className="blockButton">View comments</button>
                     </div>
+                <br></br>
         </div>
         
     );

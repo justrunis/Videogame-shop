@@ -57,21 +57,25 @@ function Register(){
     };
 
     return(
-        <div className="col-sm-6 offset-sm-3">
-            <h1>Register Page</h1>
-            <label>Username</label>
-            <input type = "text" value={usernameReq} onChange={(e)=>setUsernameReq(e.target.value)} className="form-control" placeholder="Username"/>
+        <div>
             <br></br>
-            <label>Email</label>
-            <input type = "text" value={EmailReq} onChange={(e)=>setEmailReq(e.target.value)} className="form-control" placeholder="Email"/>
-            <br></br>
-            <label>Password</label>
-            <input type = "password" value={passwordReq} onChange={(e)=>setPasswordReq(e.target.value)} className="form-control" placeholder="Password"/>
-            <br></br>
-            <label>Repeat password</label>
-            <input type = "password" value={passwordReqConfirma} onChange={(e)=>setPasswordReqConfirm(e.target.value)} className="form-control" placeholder="Password confirmation"/>
-            <br></br>
-            <button onClick={signUp} className="btn btn-primary">Register</button>
+            <h1>Register page</h1>
+            <div className="form-floating col-sm-2 offset-sm-5">
+                <br></br>
+                <h4>Username</h4>
+                <input type = "text" value={usernameReq} onChange={(e)=>setUsernameReq(e.target.value)} className="form-control" placeholder="Username"/>
+                <br></br>
+                <h4>Email</h4>
+                <input type = "email" value={EmailReq} onChange={(e)=>setEmailReq(e.target.value)} className="form-control" placeholder="Email"/>
+                <br></br>
+                <h4>Password</h4>
+                <input type = "password" value={passwordReq} onChange={(e)=>setPasswordReq(e.target.value)} className="form-control" placeholder="Password"/>
+                <br></br>
+                <h4>Repeat password</h4>
+                <input type = "password" value={passwordReqConfirma} onChange={(e)=>setPasswordReqConfirm(e.target.value)} className="form-control" placeholder="Password confirmation"/>
+                <br></br>
+                <button onClick={signUp} className="btn btn-primary">Register</button>
+            </div>
         </div>
     )
 }

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import AuthUser from "../Services/AuthUser";
 import { Navigate, useParams} from 'react-router-dom';
+import { format } from 'date-fns'
 
 const CreateGameComp = () =>{
 
@@ -27,10 +28,10 @@ const CreateGameComp = () =>{
             Name: name,
             Description: description,
             Platform: platform,
-            RealeaseDate: releaseDate,
+            releaseDate: releaseDate,
             Price: price
         }
-        console.log(data);
+        console.log("data yay!!! ",data);
         console.log(getToken());
         http.post(`gameCategories/${id1}/games`, data, {
             headers: {
@@ -47,26 +48,29 @@ const CreateGameComp = () =>{
     }
 
     return(
-        <div className="col-sm-4 offset-sm-4">
+        <div>
             <br></br>
-            <h2>Create new game </h2>
-            <br></br>
-            <label>Name</label>
-            <input type = "text" defaultValue={name} onChange={(e)=>setName(e.target.value)} className="form-control" placeholder="Name"/>
-            <br></br>
-            <label>Description</label>
-            <input type = "textarea" defaultValue={description} onChange={(e)=>setDescription(e.target.value)} className="form-control" placeholder="Description"/>
-            <br></br>
-            <label>Platform</label>
-            <input type = "textarea" defaultValue={platform} onChange={(e)=>setPlatform(e.target.value)} className="form-control" placeholder="Platform"/>
-            <br></br>
-            <label>Release date</label>
-            <input type = "date" defaultValue={releaseDate} onChange={(e)=>setReleaseDate(e.target.value)} className="form-control" placeholder="Release date"/>
-            <br></br>
-            <label>Price</label>
-            <input type = "number" defaultValue={price} onChange={(e)=>setPrice(e.target.value)} className="form-control" placeholder="Price"/>
-            <br></br>
-            <button onClick={create} className="btn btn-primary">Create game</button>
+            <h1>Create new game </h1>
+            <div className="form-floating col-sm-2 offset-sm-5">
+                <br></br>
+                <h4>Name</h4>
+                <input type = "text" defaultValue={name} onChange={(e)=>setName(e.target.value)} className="form-control btn-lg btn-block w-100 p-3 h-100 d-inline-block" placeholder="Name"/>
+                <br></br>
+                <h4>Description</h4>
+                <textarea type = "text" defaultValue={description} onChange={(e)=>setDescription(e.target.value)} className="form-control btn-lg btn-block w-100 p-3 h-100 d-inline-block" placeholder="Description"/>
+                <br></br>
+                <h4>Platform</h4>
+                <input type = "text" defaultValue={platform} onChange={(e)=>setPlatform(e.target.value)} className="form-control btn-lg btn-block w-100 p-3 h-100 d-inline-block" placeholder="Platform"/>
+                <br></br>
+                <h4>Release date</h4>
+                <input type = "date" defaultValue={releaseDate} onChange={(e)=>setReleaseDate(e.target.value)} className="form-control btn-lg btn-block w-100 p-3 h-100 d-inline-block" placeholder="Release date"/>
+                <br></br>
+                <h4>Price</h4>
+                <input type = "number" defaultValue={price} onChange={(e)=>setPrice(e.target.value)} className="form-control btn-lg btn-block w-100 p-3 h-100 d-inline-block" placeholder="Price"/>
+                <br></br>
+                <br></br>
+                <button onClick={create} className="btn btn-primary btn-lg btn-block w-100 p-3 h-100 d-inline-block">Create game</button>
+            </div>
         </div>
     )
 }

@@ -55,14 +55,17 @@ const EditGameCategoryComp = () =>{
     }
 
     return(
-        <div className="col-sm-4 offset-sm-4">
+        <div>
             <br></br>
-            <h2>Edit game category</h2>
-            <br></br>
-            <label>Description</label>
-            <input type = "textarea" defaultValue={description} onChange={(e)=>setDescription(e.target.value)} className="form-control" placeholder="Description"/>
-            <br></br>
-            <button onClick={edit} className="btn btn-primary">Edit category</button>
+            <h1>Edit game category</h1>
+            <div className="form-floating col-sm-2 offset-sm-5">
+                <br></br>
+                <h4>Description</h4>
+                <textarea type = "text" defaultValue={description} onChange={(e)=>setDescription(e.target.value)} className="form-control btn-lg btn-block w-100 p-3 h-100 d-inline-block" placeholder="Description"/>
+                <br></br>
+                <br></br>
+                <button onClick={edit} className="btn btn-primary btn-lg btn-block w-100 p-3 h-100 d-inline-block">Edit category</button>
+            </div>
         </div>
     )
 }

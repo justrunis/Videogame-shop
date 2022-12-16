@@ -68,11 +68,11 @@ const AllGames = () =>{
     return(
         <div>
             <br></br>
-                <h2>All games</h2>
+                <h1>All games</h1>
             <br></br>
             {getUser() != null ?(
                 <div className="item-container">
-                    <button onClick={ () => CreateGame()} className="btn btn-secondary">Create new game</button>
+                    <button onClick={ () => CreateGame()} className="blockButton">Create new game</button>
                 </div>
             ): null}
             <br></br>
@@ -82,14 +82,18 @@ const AllGames = () =>{
                                 <img src="https://www.iconpacks.net/icons/1/free-game-controller-icon-1416-thumb.png" alt=""></img>
                                 <h3>{game.name}</h3>
                                 <br></br>
-                                <button onClick={ () => ViewGame(game.id)}  className="btn btn-info">More about {game.name}</button>
-                                <br></br>
+                                <button onClick={ () => ViewGame(game.id)}  className="btn btn-info btn-lg btn-block">More about {game.name}</button>
                                 {getUser() != null && getUser().id == Game.UserId ?(
-                                <button onClick={ () => EditGame(game.id)}  className="btn btn-dark">Edit</button>
+                                <br></br>
                                 ) : null}
-                                <br></br>
                                 {getUser() != null && getUser().id == Game.UserId ?(
-                                <button onClick={ () => RemoveGame(game.id)}  className="btn btn-danger">Remove</button>
+                                <button onClick={ () => EditGame(game.id)}  className="btn btn-dark btn-lg btn-block">Edit</button>
+                                ) : null}
+                                {getUser() != null && getUser().id == Game.UserId ?(
+                                <br></br>
+                                ) : null}
+                                {getUser() != null && getUser().id == Game.UserId ?(
+                                <button onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) RemoveGame(game.id) } }  className="btn btn-danger btn-lg btn-block">Remove</button>
                                 ) : null}
                                 <br></br>
                               </div>

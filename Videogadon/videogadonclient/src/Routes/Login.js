@@ -31,6 +31,7 @@ function Login(){
             console.log("User",usernameReq)
             console.log("Token", res.data.accessToken)
             setToken(usernameReq, res.data.accessToken);
+            window.location.reload(false);  
 
         }).catch((error) => {
             alert("Bad login details");
@@ -40,16 +41,19 @@ function Login(){
     };
 
     return(
-        
-        <div className="col-sm-6 offset-sm-3">
+        <div>
+            <br></br>
             <h1>Login page</h1>
-            <label>Username</label>
-            <input type = "text" value={usernameReq} onChange={(e)=>setUsernameReq(e.target.value)} className="form-control" placeholder="Username"/>
-            <br></br>
-            <label>Password</label>
-            <input type = "password" value={passwordReq} onChange={(e)=>setPasswordReq(e.target.value)} className="form-control" placeholder="Password"/>
-            <br></br>
-            <button onClick={login} className="btn btn-primary">Log in</button>
+            <div className="form-floating col-sm-2 offset-sm-5">
+                <br></br>
+                <h4>Username</h4>
+                <input type = "text" value={usernameReq} onChange={(e)=>setUsernameReq(e.target.value)} className="form-control" placeholder="Username"/>
+                <br></br>
+                <h4>Password</h4>
+                <input type = "password" value={passwordReq} onChange={(e)=>setPasswordReq(e.target.value)} className="form-control" placeholder="Password"/>
+                <br></br>
+                <button onClick={login} className="btn btn-primary">Log in</button>
+            </div>
         </div>
 
     );

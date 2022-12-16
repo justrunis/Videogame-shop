@@ -27,19 +27,11 @@ builder.Services.AddCors(options =>
     });
 });
 
-/*builder.Services.AddCors(options =>
-{
-    options.AddPolicy(name: MyAllowSpecificOrigins,
-                      policy =>
-                      {
-                          policy.WithOrigins("http://localhost:3000",
-                                              "http://www.contoso.com"); // add the allowed origins
-                      });
-});*/
-
-// services.AddResponseCaching();
 
 builder.Services.AddControllers();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 builder.Services.AddIdentity<ShopRestUser, IdentityRole>()
     .AddEntityFrameworkStores<VideogadonDbContext>()
@@ -78,6 +70,9 @@ builder.Services.AddSingleton<IAuthorizationHandler, ResourceOwnerAuthorizationH
 
 var app = builder.Build();
 
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseRouting();
 app.MapControllers();

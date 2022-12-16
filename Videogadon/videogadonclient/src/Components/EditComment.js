@@ -55,14 +55,16 @@ const EditCommentComp = () =>{
     }
 
     return(
-        <div className="col-sm-4 offset-sm-4">
+        <div>
             <br></br>
-            <h2>Edit comment</h2>
-            <br></br>
-            <label>Content</label>
-            <input type = "textarea" defaultValue={content} onChange={(e)=>setContent(e.target.value)} className="form-control" placeholder="Content"/>
-            <br></br>
-            <button onClick={edit} className="btn btn-primary">Edit comment</button>
+            <h1>Edit comment</h1>
+            <div className="form-floating col-sm-2 offset-sm-5">
+                <br></br>
+                <h4>Content</h4>
+                <textarea type = "text" defaultValue={content} onChange={(e)=>setContent(e.target.value)} className="form-control btn-lg btn-block w-100 p-3 h-100 d-inline-block" placeholder="Content"/>
+                <br></br>
+                <button onClick={edit} className="btn btn-primary btn-lg btn-block w-100 p-3 h-100 d-inline-block">Edit comment</button>
+            </div>
         </div>
     )
 }

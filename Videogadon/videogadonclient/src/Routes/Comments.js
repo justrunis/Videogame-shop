@@ -63,11 +63,11 @@ const AllComments = () =>{
     return(
         <div>
             <br></br>
-                <h2>All comments</h2>
+                <h1>All comments</h1>
             <br></br>
             {getUser() != null ?(
                 <div className="item-container">
-                    <button onClick={ () => CreateComment()} className="btn btn-secondary">Create new comment</button>
+                    <button onClick={ () => CreateComment()} className="blockButton">Create new comment</button>
                 </div>
             ): null}
             <br></br>
@@ -89,10 +89,10 @@ const AllComments = () =>{
                                 <td>{comment.content}</td>
                                 <td>{comment.creationDate}</td>
                                 {getUser() != null && getUser().id == Comment.UserId ?(
-                                <td><button onClick={ () => EditComment(comment.id)}  className="btn btn-dark btn-block">Edit</button></td>
+                                <td className="container"><button onClick={ () => EditComment(comment.id)}  className="btn btn-dark btn-lg btn-block w-100 p-3 h-100 d-inline-block">Edit</button></td>
                                 ) : null}
                                 {getUser() != null && getUser().id == Comment.UserId ?(
-                                <td><button onClick={ () => RemoveComment(comment.id)}  className="btn btn-danger btn-block">Remove</button></td>
+                                <td><button onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) RemoveComment(comment.id) } }  className="btn btn-danger btn-lg btn-block w-100 p-3 h-100 d-inline-block">Remove</button></td>
                                 ) : null}
                                 
                             </tr>

@@ -63,23 +63,26 @@ const EditGameComp = () =>{
     }
 
     return(
-        <div className="col-sm-4 offset-sm-4">
+        <div>
             <br></br>
-            <h2>Edit game</h2>
-            <br></br>
-            <label>Name</label>
-            <input type = "text" defaultValue={Name} onChange={(e)=>setName(e.target.value)} className="form-control" placeholder="Name"/>
-            <br></br>
-            <label>Description</label>
-            <input type = "textarea" defaultValue={Description} onChange={(e)=>setDescription(e.target.value)} className="form-control" placeholder="Description"/>
-            <br></br>
-            <label>Platform</label>
-            <input type = "textarea" defaultValue={Platform} onChange={(e)=>setPlatform(e.target.value)} className="form-control" placeholder="Platform"/>
-            <br></br>
-            <label>Price</label>
-            <input type = "number" defaultValue={Price} onChange={(e)=>setPrice(e.target.value)} className="form-control" placeholder="Price"/>
-            <br></br>
-            <button onClick={edit} className="btn btn-primary">Edit game</button>
+            <h1>Edit game</h1>
+            <div className="form-floating col-sm-2 offset-sm-5">
+                <br></br>
+                <h4>Name</h4>
+                <input type = "text" defaultValue={Name} onChange={(e)=>setName(e.target.value)} className="form-control btn-lg btn-block w-100 p-3 h-100 d-inline-block" placeholder="Name"/>
+                <br></br>
+                <h4>Description</h4>
+                <textarea type = "text" defaultValue={Description} onChange={(e)=>setDescription(e.target.value)} className="form-control btn-lg btn-block w-100 p-3 h-100 d-inline-block" placeholder="Description"/>
+                <br></br>
+                <h4>Platform</h4>
+                <input type = "text" defaultValue={Platform} onChange={(e)=>setPlatform(e.target.value)} className="form-control btn-lg btn-block w-100 p-3 h-100 d-inline-block" placeholder="Platform"/>
+                <br></br>
+                <h4>Price</h4>
+                <input type = "number" defaultValue={Price} onChange={(e)=>setPrice(e.target.value)} className="form-control btn-lg btn-block w-100 p-3 h-100 d-inline-block" placeholder="Price"/>
+                <br></br>
+                <br></br>
+                <button onClick={edit} className="btn btn-primary btn-lg btn-block w-100 p-3 h-100 d-inline-block">Edit game</button>
+            </div>
         </div>
     )
 }

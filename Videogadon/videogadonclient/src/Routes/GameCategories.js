@@ -68,11 +68,11 @@ const AllGameCategories = () =>{
     return(
         <div>
             <br></br>
-            <h2>All game categories</h2>
+            <h1>All game categories</h1>
             <br></br>
             {getUser() != null ?(
                 <div className="item-container">
-                    <button onClick={ () => CreateGameCategory()} className="btn btn-secondary">Create new category</button>
+                    <button onClick={ () => CreateGameCategory()} className="blockButton">Create new category</button>
                 </div>
             ): null}
                 <div className="modal">
@@ -86,19 +86,25 @@ const AllGameCategories = () =>{
                 <br></br>
             <div className="item-container">
                 {gameCategories.map((gameCategory) => (
-                              <div className='card'>
+                              <div className='card '>
                                 <img src="https://pic.onlinewebfonts.com/svg/img_222604.png" alt=""></img>
-                                <h3>{gameCategory.name}</h3>
-                                <p1>{gameCategory.description}</p1>
-                                <br></br>
-                                <button onClick={ () => ViewGames(gameCategory.id)}  className="btn btn-info">View games</button>
-                                <br></br>
+                                <h3 class>{gameCategory.name}</h3>
+                                <p>{gameCategory.description}</p>
                                 {getUser() != null && getUser().id == GameCategory.UserId ?(
-                                <button onClick={ () => EditGameCategory(gameCategory.id)}  className="btn btn-dark">Edit</button>
+                                <br></br>
                                 ) : null}
-                                <br></br>
+                                <button onClick={ () => ViewGames(gameCategory.id)}  className="btn btn-info btn-lg btn-block">View games</button>
                                 {getUser() != null && getUser().id == GameCategory.UserId ?(
-                                <button onClick={ () => RemoveGameCategory(gameCategory.id)}  className="btn btn-danger">Remove</button>
+                                <br></br>
+                                ) : null}
+                                {getUser() != null && getUser().id == GameCategory.UserId ?(
+                                <button onClick={ () => EditGameCategory(gameCategory.id)}  className="btn btn-dark btn-lg btn-block">Edit</button>
+                                ) : null}
+                                {getUser() != null && getUser().id == GameCategory.UserId ?(
+                                <br></br>
+                                ) : null}
+                                {getUser() != null && getUser().id == GameCategory.UserId ?(
+                                <button onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) RemoveGameCategory(gameCategory.id) } }  className="btn btn-danger btn-lg btn-block">Remove</button>
                                 ) : null}
                               </div>
                 ))}

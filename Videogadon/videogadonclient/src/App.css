@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #195ee7;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -39,6 +39,7 @@
 
 h1, h2, h3 {
   text-align: center;
+  color: black;
 }
 
 .item-container {
@@ -58,6 +59,7 @@ h1, h2, h3 {
 
 body{
   background-color: darkgrey;
+  background-image: url('https://static.vecteezy.com/system/resources/thumbnails/000/374/866/small/Background_1_A.jpg');
 }
 
   /* Modify the background color */
@@ -69,7 +71,7 @@ body{
   
 .navbar-custom .navbar-brand,
 .navbar-custom .navbar-text {
-    color: green;
+    color: black;
 }
 
 
@@ -103,16 +105,16 @@ td {
   padding: 8px;
 }
 
-#gameInfo tr:nth-child(even){background-color: #f2f2f2;}
+#gameInfo tr{background-color: #2596be;}
 
-#gameInfo tr:hover {background-color: #ddd;}
+#gameInfo tr:hover {background-color: transparent;}
 
 #gameInfo th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: center;
-  background-color: grey;
-  color: white;
+  background-color: white;
+  color: black;
 }
 
 .tableformat td:nth-child(1){
@@ -132,4 +134,36 @@ td {
   .container header .header-nav-area #nav_container  {
     display:flex;
   }
+}
+
+.blockButton {
+  display: block;
+  border-radius: 24px;
+  width: 25%;
+  border: none;
+  background-color: white;
+  color: black;
+  padding: 14px 28px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.blockButton:hover {
+  background-color: #ddd;
+  color: #2596be;
+}
+
+.currentUser{
+  color: black;
+  margin-left: 40px;
+  text-align: center;
+}
+
+marquee {
+  padding-bottom: 4px;
+}
+
+.userName{
+  color: red;
 }
